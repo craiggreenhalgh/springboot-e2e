@@ -1,0 +1,115 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Validate the person entity fields",
+        "description": "",
+        "id": "individual-person-fields;validate-the-person-entity-fields",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 833283022059,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I create the person entity and updated the person record with the following details",
+            "match": {
+              "location": "PersonEntityStepDef.i_creates_the_person_entity_with_the_following_details(String,String\u003e)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "firstName",
+                  "Tory"
+                ],
+                "line": 6
+              },
+              {
+                "cells": [
+                  "lastName",
+                  "Cameron"
+                ],
+                "line": 7
+              },
+              {
+                "cells": [
+                  "Title",
+                  "Mr"
+                ],
+                "line": 8
+              },
+              {
+                "cells": [
+                  "dob",
+                  "1955-10-26"
+                ],
+                "line": 9
+              },
+              {
+                "cells": [
+                  "address",
+                  "10 Downing Street"
+                ],
+                "line": 10
+              }
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2281750,
+              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat dnaCucumber.stepDef.PersonEntityStepDef.i_get_the_person_detials_from_postgres_db(PersonEntityStepDef.java:57)\r\n\tat ✽.When I get the person detials from postgres db(S01_PersonEntity.feature:11)\r\n",
+              "status": "pending"
+            },
+            "line": 11,
+            "name": "I get the person detials from postgres db",
+            "match": {
+              "location": "PersonEntityStepDef.i_get_the_person_detials_from_postgres_db()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "person details name, dob and address are as below",
+            "match": {
+              "location": "PersonEntityStepDef.person_details_name_dob_and_address_are_as_below(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Tory"
+                ],
+                "line": 13
+              },
+              {
+                "cells": [
+                  "1955-10-26"
+                ],
+                "line": 14
+              },
+              {
+                "cells": [
+                  "10 Downing Street"
+                ],
+                "line": 15
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Individual person fields",
+    "description": "",
+    "id": "individual-person-fields",
+    "keyword": "Feature",
+    "uri": "S01_PersonEntity.feature"
+  }
+]
