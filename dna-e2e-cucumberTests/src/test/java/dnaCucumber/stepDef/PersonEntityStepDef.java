@@ -3,6 +3,7 @@ package dnaCucumber.stepDef;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.mastek.dna.model.Address;
 import com.mastek.dna.model.Individual;
 import com.mastek.dna.model.Name;
@@ -11,44 +12,33 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import dnaCucumber.config.CommonUtil;
 import dnaCucumber.config.Config;
+import dnaCucumber.dtos.IndividualDto;
 import dnaCucumber.utils.JsonUtil;
 import dnaCucumber.utils.RestClient;
 import jdk.nashorn.internal.objects.NativeJSON;
+import net.minidev.json.JSONObject;
 import net.minidev.json.JSONUtil;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Vikram103069 on 12/10/2016.
  */
 public class PersonEntityStepDef {
 
-    public static final String INDIVIDUAL_URI = "/individual";
+    private IndividualDto individualDto = IndividualDto.getInstance();
+    private CommonUtil commonUtil = CommonUtil.getInstance();
 
     @Given("^I create the person entity and updated the person record with the following details$")
     public void i_creates_the_person_entity_with_the_following_details(Map<String, String> person) throws Throwable {
-        Name personName = new Name()
-                .setTitle(Name.Title.MR)
-                .setFirstname(person.get("firstName"))
-                .setSurname(person.get("lastName"));
-        int[] dob = Arrays.stream(person.get("dob").split("-")).mapToInt(Integer::parseInt).toArray();
-        LocalDate personDob = LocalDate.of(dob[0], dob[1], dob[2]);
-        Address personAddress = new Address().setTown(person.get("address"));
-        Individual personEntity = new Individual().setName(personName).setDob(personDob).setAddress(personAddress);
-        RestClient restClient = new RestClient(Config.instane().getBaseUrl()+INDIVIDUAL_URI, new HashMap<>());
-        restClient.setAuthentication(Config.instane().getUsername(), Config.instane().getPassword());
-//        Gson gson = new GsonBuilder().setDateFormat("YYYY-dd-mm").create();
-//        Gson gson = new GsonBuilder().registerTypeAdapter(java.sql.Date.class, dob).create();
-        Gson gson = new Gson();
-        String personRecord = gson.toJson(personEntity);
 
-
-        restClient.post(personRecord);
+        Individual individualDtos = individualDto.getIndividualDtos(person);
+        commonUtil.updateRecord(individualDtos, IndividualDto.INDIVIDUAL_URI);
     }
 
     @When("^I get the person detials from postgres db$")
