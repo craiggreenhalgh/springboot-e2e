@@ -89,22 +89,3 @@ formatter.step({
 formatter.match({
   "location": "PersonEntityStepDef.i_creates_the_person_entity_with_the_following_details(String,String\u003e)"
 });
-formatter.result({
-  "duration": 833283022059,
-  "status": "passed"
-});
-formatter.match({
-  "location": "PersonEntityStepDef.i_get_the_person_detials_from_postgres_db()"
-});
-formatter.result({
-  "duration": 2281750,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat dnaCucumber.stepDef.PersonEntityStepDef.i_get_the_person_detials_from_postgres_db(PersonEntityStepDef.java:57)\r\n\tat ✽.When I get the person detials from postgres db(S01_PersonEntity.feature:11)\r\n",
-  "status": "pending"
-});
-formatter.match({
-  "location": "PersonEntityStepDef.person_details_name_dob_and_address_are_as_below(DataTable)"
-});
-formatter.result({
-  "status": "skipped"
-});
-});
