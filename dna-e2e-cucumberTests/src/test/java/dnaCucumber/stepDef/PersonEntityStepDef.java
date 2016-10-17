@@ -54,7 +54,7 @@ public class PersonEntityStepDef extends BaseStepDefs{
 
     @When("^I get the person detials from postgres db$")
     public void i_get_the_person_detials_from_postgres_db() throws Throwable {
-        ResultSet individualRecords1 = postgresClient.executeQuery(Query.getPersonRecordByIdFromIndividualTable("100"));
+        ResultSet individualRecords1 = postgresClient.executeQuery(Query.getPersonRecordByIdFromIndividualTable("1"));
         setIndividualRecords1(individualRecords1);
     }
 

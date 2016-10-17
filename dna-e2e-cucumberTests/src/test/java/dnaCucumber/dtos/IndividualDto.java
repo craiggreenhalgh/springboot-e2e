@@ -4,11 +4,14 @@ import com.google.gson.Gson;
 import com.mastek.dna.model.Address;
 import com.mastek.dna.model.Individual;
 import com.mastek.dna.model.Name;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import dnaCucumber.config.Config;
 import dnaCucumber.utils.RestClient;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -34,11 +37,11 @@ public class IndividualDto implements IDto{
             name.put(param, person.get(param));
         });
         String personDob = person.get("dob");
-        String personAddress = person.get("addres");
+        String personAddress = person.get("address");
         return new Individual()
-                            .setAddress(getAddressDtos(personAddress))
-                            .setName(getNameDtos(name))
-                            .setDob(getPersonDob(personDob));
+                                .setAddresses(getAddressDtos(personAddress))
+                                .setName(getNameDtos(name))
+                                .setDob(getPersonDob(personDob));
     }
 
     public Name getNameDtos(Map<String, String> nameParams) {
@@ -48,8 +51,20 @@ public class IndividualDto implements IDto{
                         .setSurname(nameParams.get("lastName"));
 }
 
-    public Address getAddressDtos(String address) {
-        return new Address().setTown(address);
+    public Set<Address> getAddressDtos(String addresses) {
+        List<String> listOfAddressesString = Arrays.stream(addresses.split(";")).collect(Collectors.toList());
+        Set<Address> setOfAddresses = new LinkedHashSet<>();
+        listOfAddressesString.forEach(addressString -> {
+            List<String> addressParams = Arrays.stream(addressString.split(",")).collect(Collectors.toList());
+            Address address = new Address()
+                    .setLine1(addressParams.get(0))
+                    .setLine2(addressParams.get(1))
+                    .setCounty(addressParams.get(2))
+                    .setCountry(addressParams.get(3))
+                    .setPostCode(addressParams.get(4));
+            setOfAddresses.add(address);
+        });
+        return setOfAddresses;
     }
 
     public LocalDate getPersonDob(String personDob) {
