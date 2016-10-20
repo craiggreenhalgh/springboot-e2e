@@ -1,14 +1,9 @@
 package dnaCucumber.config;
 
-import com.google.gson.Gson;
-import com.google.gson.internal.Streams;
-import com.mastek.dna.model.Individual;
-import dnaCucumber.dtos.IDto;
-import dnaCucumber.utils.RestClient;
+import com.google.gson.*;
 
-import java.util.HashMap;
-
-import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
+import java.lang.reflect.Type;
+import java.time.LocalDate;
 
 /**
  * Created by Vikram103069 on 14/10/2016.
@@ -16,6 +11,8 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 public class CommonUtil {
 
     private static CommonUtil instance = null;
+    private String scenarioVal;
+
     private CommonUtil() {
 
     }
@@ -26,12 +23,27 @@ public class CommonUtil {
         return instance;
     }
 
-    public <T extends Individual> void  updateRecord(T dto, String URI) {
-        Config config = Config.instane();
-        RestClient restClient = new RestClient(config.getBaseUrl()+URI, new HashMap<>());
-        restClient.setAuthentication(config.getUsername(), config.getPassword());
+    public static String convertToJson(Object dto, boolean localDateToString) {
+        if(localDateToString) {
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+                @Override
+                public JsonElement serialize(LocalDate localDateTime, Type type, JsonSerializationContext jsonSerializationContext) {
+                    return new JsonPrimitive(localDateTime.toString());
+                }
+            });
+            Gson gson = gsonBuilder.create();
+            return gson.toJson(dto);
+        }
         Gson gson = new Gson();
-        String personRecord = gson.toJson(dto);
-        restClient.post(personRecord);
+        return gson.toJson(dto);
+    }
+
+    public void setScenarioVal(String scenarioVal) {
+        this.scenarioVal = scenarioVal;
+    }
+
+    public String getScenarioVal() {
+        return scenarioVal;
     }
 }
