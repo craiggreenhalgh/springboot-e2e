@@ -1,14 +1,9 @@
 package dnaCucumber.config;
 
 import com.google.gson.*;
-import com.mastek.dna.model.Individual;
-import dnaCucumber.utils.RestClient;
 
 import java.lang.reflect.Type;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.HashMap;
+import java.time.LocalDate;
 
 /**
  * Created by Vikram103069 on 14/10/2016.
@@ -16,6 +11,8 @@ import java.util.HashMap;
 public class CommonUtil {
 
     private static CommonUtil instance = null;
+    private String scenarioVal;
+
     private CommonUtil() {
 
     }
@@ -26,21 +23,27 @@ public class CommonUtil {
         return instance;
     }
 
-    public <T extends Individual> void  updateRecord(T dto, String URI) {
-        Config config = Config.getInstance();
-        RestClient restClient = new RestClient(config.getBaseUrl()+URI, new HashMap<>());
-        restClient.setAuthentication(config.getUsername(), config.getPassword());
-//        Gson gson = new Gson();
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-            @Override
-            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
-                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-            }
-        }).create();
+    public static String convertToJson(Object dto, boolean localDateToString) {
+        if(localDateToString) {
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+                @Override
+                public JsonElement serialize(LocalDate localDateTime, Type type, JsonSerializationContext jsonSerializationContext) {
+                    return new JsonPrimitive(localDateTime.toString());
+                }
+            });
+            Gson gson = gsonBuilder.create();
+            return gson.toJson(dto);
+        }
+        Gson gson = new Gson();
+        return gson.toJson(dto);
+    }
 
-//            Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
-        String personRecord = gson.toJson(dto);
-        restClient.post(personRecord);
+    public void setScenarioVal(String scenarioVal) {
+        this.scenarioVal = scenarioVal;
+    }
+
+    public String getScenarioVal() {
+        return scenarioVal;
     }
 }

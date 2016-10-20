@@ -1,6 +1,5 @@
 package dnaCucumber.stepDef;
 
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +9,12 @@ import java.util.Map;
 public class BaseStepDefs {
 
     private List<Map<String, String>> individualRecords;
-    private ResultSet individualRecords1;
 
-    public void setIndividualRecords1(ResultSet individualRecords1) {
-        this.individualRecords1 = individualRecords1;
+    public void setIndividualRecords(List<Map<String, String>> personDetails) {
+        this.individualRecords = personDetails;
     }
 
-    public ResultSet getIndividualRecords1() {
-        return individualRecords1;
+    public List<Map<String, String>> getIndividualRecords() {
+        return individualRecords;
     }
 }

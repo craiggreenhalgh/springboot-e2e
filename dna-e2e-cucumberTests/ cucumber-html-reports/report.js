@@ -7,10 +7,16 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 697009221,
+  "duration": 1639458929,
   "status": "passed"
 });
 formatter.scenario({
+  "comments": [
+    {
+      "line": 2,
+      "value": "#Check the stack trace for the value of scenario_val which is concatenated to the firstName to make it unique name each time the test run"
+    }
+  ],
   "line": 3,
   "name": "Validate the person entity fields",
   "description": "",
@@ -71,31 +77,36 @@ formatter.step({
   "rows": [
     {
       "cells": [
-        "Mr"
+        "firstName",
+        "Tory"
       ],
       "line": 12
     },
     {
       "cells": [
-        "Tory"
+        "lastName",
+        "Cameron"
       ],
       "line": 13
     },
     {
       "cells": [
-        "Cameron"
+        "Title",
+        "Mr"
       ],
       "line": 14
     },
     {
       "cells": [
+        "dob",
         "1955-10-26"
       ],
       "line": 15
     },
     {
       "cells": [
-        "10 Downing Street"
+        "address",
+        "10 Lambeth Street, Hemel Hempstead, Hertfordshire, UK, HP1 2DT; 20 Nelson Street, Lambeth, Lambeth Council, UK, SW1 2UF"
       ],
       "line": 16
     }
@@ -106,16 +117,25 @@ formatter.match({
   "location": "PersonEntityStepDef.i_creates_the_person_entity_with_the_following_details(String,String\u003e)"
 });
 formatter.result({
-  "duration": 11989199941,
+  "duration": 724785588,
   "status": "passed"
 });
 formatter.match({
   "location": "PersonEntityStepDef.i_get_the_person_detials_from_postgres_db()"
 });
 formatter.result({
-  "duration": 56918119449302,
+  "duration": 36605867,
   "status": "passed"
 });
 formatter.match({
   "location": "PersonEntityStepDef.person_details_name_dob_and_address_are_as_below(String,String\u003e)"
+});
+formatter.result({
+  "duration": 27915638,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 21348,
+  "status": "passed"
+});
 });
