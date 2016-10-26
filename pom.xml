@@ -25,8 +25,8 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>e2e-api</module>
-		<module>e2e-ui</module>
+		<module>e2e-testing-api</module>
+		<module>e2e-testing-ui</module>
 	</modules>
 
 </project>
