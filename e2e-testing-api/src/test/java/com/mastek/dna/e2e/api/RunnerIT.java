@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(glue = "com.mastek.dna.e2e.steps.api", features = "classpath:features/", plugin = { "pretty",
+@CucumberOptions(glue = "com.mastek.dna.e2e.api.steps", features = "classpath:features/", plugin = { "pretty",
 		"html:target/site/cucumber-pretty",
 		"json:target/cucumber.json",
 		"usage:target/cucumber-usage.json", "junit:target/cucumber-results.xml" })
