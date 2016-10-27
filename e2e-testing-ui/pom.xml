@@ -183,7 +183,7 @@
 									<arguments>
 										<argument>java</argument>
 										<argument>-jar</argument>
-										<argument>${project.build.directory}\dna-registry-${dna.version}-boot.jar</argument>
+										<argument>${project.build.directory}/dna-registry-${dna.version}-boot.jar</argument>
 									</arguments>
 								</configuration>
 							</execution>
@@ -198,7 +198,7 @@
 									<arguments>
 										<argument>java</argument>
 										<argument>-jar</argument>
-										<argument>${project.build.directory}\dna-individual-${dna.version}-boot.jar</argument>
+										<argument>${project.build.directory}/dna-individual-${dna.version}-boot.jar</argument>
 									</arguments>
 								</configuration>
 							</execution>
@@ -213,7 +213,7 @@
 									<arguments>
 										<argument>java</argument>
 										<argument>-jar</argument>
-										<argument>${project.build.directory}\dna-web-${dna.version}-boot.jar</argument>
+										<argument>${project.build.directory}/dna-web-${dna.version}-boot.jar</argument>
 									</arguments>
 								</configuration>
 							</execution>
