@@ -10,6 +10,10 @@
 
 	<artifactId>e2e-testing-api</artifactId>
 
+	<properties>
+		<endpoint.url>http://localhost:8080</endpoint.url>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -170,7 +174,7 @@
 									<arguments>
 										<argument>java</argument>
 										<argument>-jar</argument>
-										<argument>${project.build.directory}\dna-registry-${dna.version}-boot.jar</argument>
+										<argument>${project.build.directory}/dna-registry-${dna.version}-boot.jar</argument>
 									</arguments>
 								</configuration>
 							</execution>
@@ -185,8 +189,9 @@
 									<arguments>
 										<argument>java</argument>
 										<argument>-jar</argument>
-										<argument>${project.build.directory}\dna-individual-${dna.version}-boot.jar</argument>
+										<argument>${project.build.directory}/dna-individual-${dna.version}-boot.jar</argument>
 									</arguments>
+									<waitAfterLaunch>300</waitAfterLaunch>
 								</configuration>
 							</execution>
 							<execution>
