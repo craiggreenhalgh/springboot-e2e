@@ -161,7 +161,7 @@
 					<plugin>
 						<groupId>com.bazaarvoice.maven.plugins</groupId>
 						<artifactId>process-exec-maven-plugin</artifactId>
-						<version>0.7</version>
+						<version>0.8</version>
 						<executions>
 							<execution>
 								<id>start-registry</id>
@@ -191,7 +191,7 @@
 										<argument>-jar</argument>
 										<argument>${project.build.directory}/dna-individual-${dna.version}-boot.jar</argument>
 									</arguments>
-									<waitAfterLaunch>300</waitAfterLaunch>
+									<waitAfterLaunch>60</waitAfterLaunch>
 								</configuration>
 							</execution>
 							<execution>
@@ -223,7 +223,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
