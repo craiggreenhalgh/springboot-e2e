@@ -107,6 +107,7 @@
 			<version>1.1.7</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -170,7 +171,7 @@
 					<plugin>
 						<groupId>com.bazaarvoice.maven.plugins</groupId>
 						<artifactId>process-exec-maven-plugin</artifactId>
-						<version>0.7</version>
+						<version>0.8</version>
 						<executions>
 							<execution>
 								<id>start-registry</id>
@@ -245,7 +246,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>

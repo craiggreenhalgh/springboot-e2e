@@ -1,6 +1,7 @@
 package com.mastek.dna.e2e.api.client;
 
 import java.nio.charset.Charset;
+
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
